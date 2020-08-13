@@ -6,9 +6,13 @@ import numpy as np
 import pandas as pd
 
 
-def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z_u=2, K_rs=0.16, a_s=0.25, b_s=0.5, alb=0.23):
+def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None,
+              z_u=2, K_rs=0.16, a_s=0.25, b_s=0.5, alb=0.23):
     """
-    Function to estimate the parameters necessary to calculate reference ET (ETo) from the `FAO 56 paper <http://www.fao.org/docrep/X0490E/X0490E00.htm>`_ [1]_ using a minimum of T_min and T_max for daily estimates and T_mean and RH_mean for hourly, but optionally utilising the maximum number of available met parameters. The function prioritizes the estimation of specific parameters based on the available input data.
+    Function to estimate the parameters necessary to calculate reference ET (ETo) from the `FAO 56 paper
+    <http://www.fao.org/docrep/X0490E/X0490E00.htm>`_ [1]_ using a minimum of T_min and T_max for daily
+    estimates and T_mean and RH_mean for hourly, but optionally utilising the maximum number of available
+    met parameters. The function prioritizes the estimation of specific parameters based on the available input data.
 
     Parameters
     ----------
@@ -41,7 +45,9 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
 
     Notes
     --------
-    The input data must be a DataFrame with specific column names according to the met parameter. The column names should be a minimum of T_min and T_max for daily estimates and T_mean and RH_mean for hourly, but can contain any/all of the following:
+    The input data must be a DataFrame with specific column names according to the met parameter. The column names
+    should be a minimum of T_min and T_max for daily estimates and T_mean and RH_mean for hourly,
+    but can contain any/all of the following:
 
     R_n
         Net radiation (MJ/m2)
@@ -73,15 +79,22 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
         Actual Vapour pressure derrived from RH
 
 
-    Parameter estimation values refer to the quality level of the input parameters into the ETo equations. Where a 0 (or nothing) refers to no necessary parameter estimation (all measurement data was available), while a 1 refers to parameters that have the best input estimations and up to a value of 3 is the worst. Starting from the right, the first value refers to U_z, the second value refers to G, the third value refers to R_n, the fourth value refers to R_s, the fifth value refers to e_a, the sixth value refers to T_mean, the seventh value refers to P.
+    Parameter estimation values refer to the quality level of the input parameters into the ETo equations.
+    Where a 0 (or nothing) refers to no necessary parameter estimation (all measurement data was available),
+    while a 1 refers to parameters that have the best input estimations and up to a value of 3 is the worst.
+    Starting from the right, the first value refers to U_z, the second value refers to G, the third value
+    refers to R_n, the fourth value refers to R_s, the fifth value refers to e_a, the sixth value refers
+     to T_mean, the seventh value refers to P.
 
     References
     ----------
 
-    .. [1] Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration-Guidelines for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
+    .. [1] Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration-Guidelines
+     for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
     """
 
-    met_names = np.array(['R_n', 'R_s', 'G', 'T_min', 'T_max', 'T_mean', 'T_dew', 'RH_min', 'RH_max', 'RH_mean', 'n_sun', 'U_z', 'P', 'e_a'])
+    met_names = np.array(['R_n', 'R_s', 'G', 'T_min', 'T_max', 'T_mean', 'T_dew',
+                          'RH_min', 'RH_max', 'RH_mean', 'n_sun', 'U_z', 'P', 'e_a'])
     self.freq = freq
 
     ####################################
@@ -99,12 +112,12 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
         RH_mean_bool = self.ts_param['RH_mean'].isnull().any()
         e_a_bool = self.ts_param['e_a'].isnull().any()
         if T_mean_bool | (RH_mean_bool & e_a_bool):
-            raise ValueError('Minimum data input was not met. Check your data.')
+            raise ValueError('Minimum data input (T_mean and RH_mean or e_a) was not met. Check your data.')
     else:
         T_min_bool = self.ts_param['T_min'].isnull().any()
         T_max_bool = self.ts_param['T_max'].isnull().any()
         if T_min_bool | T_max_bool:
-            raise ValueError('Minimum data input was not met. Check your data.')
+            raise ValueError('Minimum data input (T_min and T_max) was not met. Check your data.')
 
     ####################################
     ###### Calculations
@@ -121,7 +134,7 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
     ## Atmospheric components
 
     # Air Pressure
-    self.est_val.loc[self.ts_param['P'].isnull()] = self.est_val.loc[self.ts_param['P'].isnull()] + 1000000
+    self.est_val.loc[self.ts_param['P'].isnull()] += 1000000
     self.ts_param.loc[self.ts_param['P'].isnull(), 'P'] = 101.3*((293 - 0.0065*z_msl)/293)**5.26
 
     # Psychrometric constant
@@ -129,39 +142,57 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
 
     ######
     ## Temperature and humidity components
-    self.est_val.loc[self.ts_param['T_mean'].isnull()] = self.est_val.loc[self.ts_param['T_mean'].isnull()] + 100000
-    self.ts_param.loc[self.ts_param['T_mean'].isnull(), 'T_mean'] = (self.ts_param.loc[self.ts_param['T_mean'].isnull(), 'T_max'] + self.ts_param.loc[self.ts_param['T_mean'].isnull(), 'T_min'])/2
+    self.est_val.loc[self.ts_param['T_mean'].isnull()] += 100000
+    self.ts_param.loc[self.ts_param['T_mean'].isnull(), 'T_mean'] = \
+        (self.ts_param.loc[self.ts_param['T_mean'].isnull(), 'T_max'] +
+         self.ts_param.loc[self.ts_param['T_mean'].isnull(), 'T_min'])/2
 
     ## Vapor pressures
     if 'H' in freq:
         self.ts_param['e_mean'] = 0.6108*np.exp(17.27*self.ts_param['T_mean']/(self.ts_param['T_mean']+237.3))
-        self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_a'] = self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_mean']*self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_mean']/100
+        self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_a'] = \
+            self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_mean'] * \
+            self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_mean']/100
     else:
         self.ts_param['e_max'] = 0.6108*np.exp(17.27*self.ts_param['T_max']/(self.ts_param['T_max']+237.3))
         self.ts_param['e_min'] = 0.6108*np.exp(17.27*self.ts_param['T_min']/(self.ts_param['T_min']+237.3))
         self.ts_param['e_s'] = (self.ts_param['e_max']+self.ts_param['e_min'])/2
 
         # e_a if dewpoint temperature is known
-        self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_a'] = 0.6108*np.exp(17.27*self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_dew']/(self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_dew'] + 237.3))
+        self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_a'] = \
+            0.6108*np.exp(17.27*self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_dew'] /
+                          (self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_dew'] + 237.3))
 
         # e_a if min and max temperatures and humidities are known
-        self.est_val.loc[self.ts_param['T_dew'].isnull()] = self.est_val.loc[self.ts_param['T_dew'].isnull()] + 10000
-        self.ts_param['e_a'].loc[self.ts_param['e_a'].isnull()] = (self.ts_param['e_min'][self.ts_param['e_a'].isnull()] * self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_max']/100 + self.ts_param['e_max'][self.ts_param['e_a'].isnull()] * self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_min']/100)/2
+        self.est_val.loc[self.ts_param['T_dew'].isnull()] += 10000
+        self.ts_param['e_a'].loc[self.ts_param['e_a'].isnull()] = \
+            (self.ts_param['e_min'][self.ts_param['e_a'].isnull()] *
+             self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_max']/100 +
+             self.ts_param['e_max'][self.ts_param['e_a'].isnull()] *
+             self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_min']/100
+             )/2
 
         # self.ts_param['e_a'] if only mean humidity is known
-        self.est_val.loc[self.ts_param['e_a'].isnull()] = self.est_val.loc[self.ts_param['e_a'].isnull()] + 10000
-        self.ts_param['e_a'].loc[self.ts_param['e_a'].isnull()] = self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_mean']/100*(self.ts_param['e_max'][self.ts_param['e_a'].isnull()] + self.ts_param['e_min'][self.ts_param['e_a'].isnull()])/2
+        self.est_val.loc[self.ts_param['e_a'].isnull()] += 10000
+        self.ts_param['e_a'].loc[self.ts_param['e_a'].isnull()] = \
+            self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_mean']/100 * \
+            (self.ts_param['e_max'][self.ts_param['e_a'].isnull()] +
+             self.ts_param['e_min'][self.ts_param['e_a'].isnull()])/2
 
         # e_a if humidity is not known
-        self.est_val.loc[self.ts_param['e_a'].isnull()] = self.est_val.loc[self.ts_param['e_a'].isnull()] + 10000
-        self.ts_param['e_a'].loc[self.ts_param['e_a'].isnull()] = 0.6108*np.exp(17.27*self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_min']/(self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_min'] + 237.3))
+        self.est_val.loc[self.ts_param['e_a'].isnull()] += 10000
+        self.ts_param['e_a'].loc[self.ts_param['e_a'].isnull()] = \
+            0.6108*np.exp(17.27*self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_min'] /
+                          (self.ts_param.loc[self.ts_param['e_a'].isnull(), 'T_min'] + 237.3))
 
     # Delta
-    self.ts_param['delta'] = 4098*(0.6108*np.exp(17.27*self.ts_param['T_mean']/(self.ts_param['T_mean'] + 237.3)))/((self.ts_param['T_mean'] + 237.3)**2)
+    self.ts_param['delta'] = 4098*(0.6108*np.exp(17.27*self.ts_param['T_mean'] /
+                                                 (self.ts_param['T_mean'] + 237.3))) \
+                             / ((self.ts_param['T_mean'] + 237.3)**2)
 
 
     ######
-    ## Raditation components
+    ## Radiation components
 
     # R_a
     phi = lat*np.pi/180
@@ -177,20 +208,28 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
         w_1 = w - (np.pi*1)/24  # Need to update one day for different hourly periods
         w_2 = w + (np.pi*1)/24  # Need to update one day for different hourly periods
 
-        self.ts_param['R_a'] = 12*60/np.pi*0.082*d_r*((w_2 - w_1)*np.sin(phi)*np.sin(delta) + np.cos(phi)*np.cos(delta)*(np.sin(w_2) - np.sin(w_1)))
+        self.ts_param['R_a'] = 12*60/np.pi*0.082*d_r*((w_2 - w_1) * np.sin(phi)*np.sin(delta) +
+                                                      np.cos(phi)*np.cos(delta)*(np.sin(w_2) - np.sin(w_1)))
     else:
-        self.ts_param['R_a'] = 24*60/np.pi*0.082*d_r*(w_s*np.sin(phi)*np.sin(delta) + np.cos(phi)*np.cos(delta)*np.sin(w_s))
+        self.ts_param['R_a'] = 24*60/np.pi*0.082*d_r*(w_s*np.sin(phi)*np.sin(delta) +
+                                                      np.cos(phi)*np.cos(delta) * np.sin(w_s))
 
     # Daylight hours
     N = 24*w_s/np.pi
 
     # R_s if n_sun is known
-    self.est_val.loc[self.ts_param['R_s'].isnull()] = self.est_val.loc[self.ts_param['R_s'].isnull()] + 1000
-    self.ts_param.loc[self.ts_param['R_s'].isnull(), 'R_s'] = (a_s + b_s*self.ts_param.loc[self.ts_param['R_s'].isnull(), 'n_sun']/N[self.ts_param['R_s'].isnull().values])*self.ts_param['R_a'][self.ts_param['R_s'].isnull().values]
+    self.est_val.loc[self.ts_param['R_s'].isnull()] += 1000
+    self.ts_param.loc[self.ts_param['R_s'].isnull(), 'R_s'] = \
+        (a_s + b_s*self.ts_param.loc[self.ts_param['R_s'].isnull(), 'n_sun']/
+         N[self.ts_param['R_s'].isnull().values]) * \
+        self.ts_param['R_a'][self.ts_param['R_s'].isnull().values]
 
     # R_s if n_sun is not known
-    self.est_val.loc[self.ts_param['R_s'].isnull()] = self.est_val.loc[self.ts_param['R_s'].isnull()] + 1000
-    self.ts_param.loc[self.ts_param['R_s'].isnull(), 'R_s'] = K_rs*((self.ts_param.loc[self.ts_param['R_s'].isnull(), 'T_max'] - self.ts_param.loc[self.ts_param['R_s'].isnull(), 'T_min'])**0.5)*self.ts_param['R_a'][self.ts_param['R_s'].isnull().values]
+    self.est_val.loc[self.ts_param['R_s'].isnull()] += 1000
+    self.ts_param.loc[self.ts_param['R_s'].isnull(), 'R_s'] = \
+        K_rs*((self.ts_param.loc[self.ts_param['R_s'].isnull(), 'T_max'] -
+               self.ts_param.loc[self.ts_param['R_s'].isnull(), 'T_min'])**0.5) * \
+        self.ts_param['R_a'][self.ts_param['R_s'].isnull().values]
 
     # R_so
     R_so = (0.75 + 2*10**(-5)*z_msl)*self.ts_param['R_a']
@@ -200,16 +239,22 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
 
     # R_nl
     if 'H' in freq:
-        R_nl = (2.043*10**(-10))*((self.ts_param['T_mean'] + 273.16)**4)*(0.34-0.14*(self.ts_param['e_a']) **0.5)*((1.35*self.ts_param['R_s']/R_so) - 0.35)
+        R_nl = (2.043*10**(-10))*((self.ts_param['T_mean'] + 273.16)**4) * \
+               (0.34-0.14*(self.ts_param['e_a']) **0.5) * \
+               ((1.35*self.ts_param['R_s']/R_so) - 0.35)
     else:
-        R_nl = (4.903*10**(-9))*(((self.ts_param['T_max'] + 273.16)**4 + (self.ts_param['T_min'] + 273.16) **4)/2)*(0.34-0.14*(self.ts_param['e_a']) **0.5)*((1.35*self.ts_param['R_s']/R_so) - 0.35)
+        R_nl = (4.903*10**(-9)) * (((self.ts_param['T_max'] + 273.16) ** 4 +
+                                    (self.ts_param['T_min'] + 273.16) ** 4)/2) * \
+               (0.34 - 0.14 * (self.ts_param['e_a']) ** 0.5) * \
+               ((1.35 * self.ts_param['R_s']/R_so) - 0.35)
 
     # R_n
-    self.est_val.loc[self.ts_param['R_n'].isnull()] = self.est_val.loc[self.ts_param['R_n'].isnull()] + 100
-    self.ts_param.loc[self.ts_param['R_n'].isnull(), 'R_n'] = R_ns[self.ts_param['R_n'].isnull()] - R_nl[self.ts_param['R_n'].isnull()]
+    self.est_val.loc[self.ts_param['R_n'].isnull()] += 100
+    self.ts_param.loc[self.ts_param['R_n'].isnull(), 'R_n'] = \
+        R_ns[self.ts_param['R_n'].isnull()] - R_nl[self.ts_param['R_n'].isnull()]
 
     # G
-    self.est_val.loc[self.ts_param['G'].isnull()] = self.est_val.loc[self.ts_param['G'].isnull()] + 10
+    self.est_val.loc[self.ts_param['G'].isnull()] += 10
     self.ts_param.loc[self.ts_param['G'].isnull(), 'G'] = 0
 
 
@@ -219,5 +264,5 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None, z
     self.ts_param['U_2'] = self.ts_param['U_z']*4.87/(np.log(67.8*z_u - 5.42))
 
     # or use 2 if wind speed is not known
-    self.est_val.loc[self.ts_param['U_z'].isnull()] = self.est_val.loc[self.ts_param['U_z'].isnull()] + 1
+    self.est_val.loc[self.ts_param['U_z'].isnull()] += 1
     self.ts_param.loc[self.ts_param['U_z'].isnull(), 'U_2'] = 2
