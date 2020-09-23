@@ -102,7 +102,6 @@ def param_est(self, df, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None,
     new_cols = met_names[~np.in1d(met_names, df.columns)]
     new_df = pd.DataFrame(np.nan, index=df.index, columns=new_cols)
     self.ts_param = pd.concat([df, new_df], axis=1).copy()
-
     self.est_val = pd.Series(0, index=self.ts_param.index, name='est_val')
 
     ####################################

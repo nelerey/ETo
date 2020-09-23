@@ -5,6 +5,7 @@ Class to estimate reference ET (ETo) from the FAO 56 paper using a minimum of T_
 import pandas as pd
 from copy import copy
 from eto.param_est import param_est
+from eto.param_est_xr import param_est_xr
 from eto.methods.ETo import eto_fao
 from eto.methods.hargreaves import hargreaves
 
@@ -60,6 +61,7 @@ class ETo(object):
 
 ### Add in the ETo methods and other functions
 ETo.param_est = param_est
+ETo.param_est_xr = param_est_xr
 ETo.eto_fao = eto_fao
 ETo.eto_hargreaves = hargreaves
 ETo.copy = copy

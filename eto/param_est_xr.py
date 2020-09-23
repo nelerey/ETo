@@ -107,7 +107,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
                               for nc in new_cols]))
     self.ts_param = xr.merge([ds, new_ds]).copy()
     xr.merge([new_ds, ds])
-
     self.est_val = xr.DataArray(np.full(tuple(ds.dims.values()), 0),
                                 coords=ds.coords,
                                 dims=ds.dims,
@@ -152,7 +151,7 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
     # self.ts_param.loc[self.ts_param.isnull(), 'P'] = 101.3*((293 - 0.0065*z_msl)/293)**5.26
 
     self.est_val = self.est_val + self.ts_param['P'].isnull()*1000000
-    self.ts_param['P'].where(self.ts_param['P'].notnull(), drop=False,
+    self.ts_param['P'] = self.ts_param['P'].where(self.ts_param['P'].notnull(), drop=False,
                              other=101.3*((293 - 0.0065*z_msl)/293)**5.26)
 
     # Psychrometric constant
@@ -160,7 +159,7 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
 
     # ######
     ## Temperature and humidity components
-    self.est_val = self.est_val + self.ts_param['T_mean'].isnull()*1000000
+    self.est_val = self.est_val + self.ts_param['T_mean'].isnull()*100000
 
     self.ts_param['T_mean'] = xr.where(self.ts_param['T_mean'].isnull(),  # condition
                                        (self.ts_param['T_max'] + self.ts_param['T_min']) / 2,  # value if True
@@ -168,9 +167,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
 
     # ## Vapor pressures
     if 'H' in freq:
-        # self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_a'] = \
-        #     self.ts_param.loc[self.ts_param['e_a'].isnull(), 'e_mean'] * \
-        #     self.ts_param.loc[self.ts_param['e_a'].isnull(), 'RH_mean']/100
         self.ts_param['e_mean'] = 0.6108 * np.exp(17.27 * self.ts_param['T_mean'] /
                                                   (self.ts_param['T_mean'] + 237.3))
         self.ts_param['e_a'] = xr.where(self.ts_param['e_a'].isnull(),  # condition
@@ -218,7 +214,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
                                                      (self.ts_param['T_mean'] + 237.3))) \
                              / ((self.ts_param['T_mean'] + 237.3) ** 2)
 
-
     ######
     ## Radiation components
 
@@ -227,7 +222,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
     delta = 0.409 * np.sin(2 * np.pi * Day/365-1.39)
     d_r = 1 + 0.033 * np.cos(2 * np.pi * Day/365)  # TODO: make 360Day calender compatible
     w_s = np.arccos(-np.tan(phi) * np.tan(delta))
-
 
     if 'H' in freq:
         hour_vec = ds.indexes[dt_index_name].hour
@@ -244,20 +238,21 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
                                (w_s * np.sin(phi) * np.sin(delta) +
                                 np.cos(phi) * np.cos(delta) * np.sin(w_s))
 
-
     # Daylight hours
     N = 24 * w_s / np.pi  # TODO: make 3D for R_s calculation? what is this
 
     # R_s if n_sun is known
     self.est_val = self.est_val + self.ts_param['R_s'].isnull()*1000
-    self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull,
-                                    (a_s + b_s * np.squeeze(self.ts_param['n_sun'].values) / N) * self.ts_param['R_a'],
+    self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull(),
+                                    (a_s + b_s * np.squeeze(self.ts_param['n_sun'].values) / N)
+                                    * self.ts_param['R_a'],
                                     self.ts_param['R_s'])  # np.squeeze: necessary when some dimensions have length of 1
 
     # R_s if n_sun is not known
     self.est_val = self.est_val + self.ts_param['R_s'].isnull()*1000
     self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull(),
-                                    K_rs * ((self.ts_param['T_max'] - self.ts_param['T_min'])**0.5) * self.ts_param['R_a'],
+                                    K_rs * ((self.ts_param['T_max'] - self.ts_param['T_min'])**0.5)
+                                    * self.ts_param['R_a'],
                                     self.ts_param['R_s'])
 
     # R_so
@@ -282,7 +277,7 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
     self.ts_param['R_n'] = xr.where(self.ts_param['R_n'].isnull(),
                                     R_ns - R_nl, self.ts_param['R_n'])
 
-    # G
+    # +G
     self.est_val = self.est_val + self.ts_param['G'].isnull()*10
     self.ts_param['G'] = xr.where(self.ts_param['G'].isnull(),
                                   0, self.ts_param['G'])
