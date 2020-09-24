@@ -6,7 +6,7 @@ import pandas as pd
 import numpy as np
 
 
-def eto_fao(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15):
+def eto_fao(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15, round_decimals=2):
     """
     Function to estimate reference ET (ETo) from the `FAO 56 paper <http://www.fao.org/docrep/X0490E/X0490E00.htm>`_ [1]_ using a minimum of T_min and T_max for daily estimates and T_mean and RH_mean for hourly, but optionally utilising the maximum number of available met parameters. The function prioritizes the estimation of specific parameters based on the available input data.
 
@@ -34,6 +34,7 @@ def eto_fao(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15):
 
     ######
     ## ETo equation
+
     if 'H' in self.freq:
         ETo_FAO = (0.408*self.ts_param['delta']*(self.ts_param['R_n'] - self.ts_param['G']) + self.ts_param['gamma']*37/(self.ts_param['T_mean'] + 273)*self.ts_param['U_2']*(self.ts_param['e_mean'] - self.ts_param['e_a']))/(self.ts_param['delta'] + self.ts_param['gamma']*(1 + 0.34*self.ts_param['U_2']))
     else:
@@ -46,11 +47,11 @@ def eto_fao(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15):
     ETo_FAO[ETo_FAO < min_ETo] = np.nan
 
     ## ETo equation with filled holes using interpolation (use with caution)
-    if isinstance(interp, str):
-        ETo_FAO_fill = self.tsreg(ETo_FAO, self.freq, interp, maxgap)
-        ETo_FAO_fill.name = 'ETo_FAO_interp_mm'
-        ETo = pd.concat([ETo_FAO, ETo_FAO_fill], axis=1).round(2)
-    else:
-        ETo = ETo_FAO.round(2)
-
+    # if isinstance(interp, str):
+    #     ETo_FAO_fill = self.tsreg(ETo_FAO, self.freq, interp, maxgap)
+    #     ETo_FAO_fill.name = 'ETo_FAO_interp_mm'
+    #     ETo = pd.concat([ETo_FAO, ETo_FAO_fill], axis=1).round(round_decimals)
+    # else:
+    #     ETo = ETo_FAO.round(round_decimals)
+    ETo = ETo_FAO.round(round_decimals) # nnn
     return ETo

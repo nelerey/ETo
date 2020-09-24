@@ -1,3 +1,3 @@
-from eto.core import ETo
+from eto.core import ETo, ETo_xr
 import eto.datasets
 import eto.methods
