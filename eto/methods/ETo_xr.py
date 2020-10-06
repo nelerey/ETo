@@ -48,6 +48,9 @@ def eto_fao_xr(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15, remove_extr
                    self.ts_param['gamma'] * 900/(self.ts_param['T_mean'] + 273)*self.ts_param['U_2'] *
                    (self.ts_param['e_s'] - self.ts_param['e_a'])) / \
                   (self.ts_param['delta'] + self.ts_param['gamma'] * (1 + 0.34 * self.ts_param['U_2']))
+    # explanation of some constants etc in the above equation:
+    # 0.34 = 70/208; with 70 the reference crop stomatal resistance.
+    #
 
     ETo_FAO.name = 'ETo_FAO_mm'
 
