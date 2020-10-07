@@ -94,7 +94,7 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
      for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
     """
     met_names = np.array(['R_n', 'R_s', 'G', 'T_min', 'T_max', 'T_mean', 'T_dew',
-                          'RH_min', 'RH_max', 'RH_mean', 'n_sun', 'U_z', 'P', 'e_a'])
+                          'RH_min', 'RH_max', 'RH_mean', 'n_sun', 'U_z', 'P', 'e_a', 'R_ns', 'R_nl'])
     self.freq = freq
     varnames = list(ds.keys())
     ####################################
@@ -126,7 +126,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
         if T_min_bool | T_max_bool:
             raise ValueError('Minimum data input (T_min and T_max) was not met. Check your data.')
 
-
     ####################################
     ###### Calculations
 
@@ -135,11 +134,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
     # if type(df.index) is not pd.DatetimeIndex:
     #     raise ValueError('DataFrame must have a datetime index!')
 
-    if type(ds.indexes[dt_index_name]) is not pd.DatetimeIndex:
-        raise ValueError('DataFrame must have a datetime index!')
-
-    # Create the Day of the year vector
-    Day = ds.indexes[dt_index_name].dayofyear
 
     ######
     ## Atmospheric components
@@ -151,8 +145,9 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
     # self.ts_param.loc[self.ts_param.isnull(), 'P'] = 101.3*((293 - 0.0065*z_msl)/293)**5.26
 
     self.est_val = self.est_val + self.ts_param['P'].isnull()*1000000
-    self.ts_param['P'] = self.ts_param['P'].where(self.ts_param['P'].notnull(), drop=False,
-                             other=101.3*((293 - 0.0065*z_msl)/293)**5.26)
+    if self.ts_param['P'].isnull().values.sum() > 0:
+        self.ts_param['P'] = self.ts_param['P'].where(self.ts_param['P'].notnull(), drop=False,
+                                                      other=101.3*((293 - 0.0065*z_msl)/293)**5.26)
 
     # Psychrometric constant
     self.ts_param['gamma'] = (0.665*10**-3)*self.ts_param['P']
@@ -191,7 +186,7 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
         self.ts_param['e_a'] = xr.where(self.ts_param['e_a'].isnull(),
                                         (self.ts_param['e_min'] * self.ts_param['RH_max']/100 +
                                          self.ts_param['e_max'] * self.ts_param['RH_min']/100) / 2,
-                                        self.ts_param['e_a'])  # TODO: klopt het dat rhmaxmin en emaxmin gekruist zijn???
+                                        self.ts_param['e_a'])
 
         # self.ts_param['e_a'] if only mean humidity is known
         self.est_val = self.est_val + self.ts_param['e_a'].isnull()*10000
@@ -217,65 +212,88 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
     ######
     ## Radiation components
 
-    # R_a
-    phi = lat * np.pi/180  # TODO: waar wordt lat gedefined? want dit moet komen van de coordinaten...
-    delta = 0.409 * np.sin(2 * np.pi * Day/365-1.39)
-    d_r = 1 + 0.033 * np.cos(2 * np.pi * Day/365)  # TODO: make 360Day calender compatible
-    w_s = np.arccos(-np.tan(phi) * np.tan(delta))
+    if ((self.ts_param['R_ns'].isnull().values.sum() > 0) | \
+            (self.ts_param['R_nl'].isnull().values.sum() > 0)) & (self.ts_param['R_n'].isnull().values.sum() > 0):
 
-    if 'H' in freq:
-        hour_vec = ds.indexes[dt_index_name].hour
-        b = (2 * np.pi * (Day - 81)) / 364
-        S_c = 0.1645 * np.sin(2 * b) - 0.1255 * np.cos(b) - 0.025 * np.sin(b)
-        w = np.pi/12 * (((hour_vec + 0.5) + 0.6666667 * (TZ_lon - lon) + S_c) - 12)
-        w_1 = w - (np.pi * 1)/24  # Need to update one day for different hourly periods
-        w_2 = w + (np.pi * 1)/24  # Need to update one day for different hourly periods
-        self.ts_param['R_a'] = 12 * 60 / np.pi * 0.082 * d_r * \
-                               ((w_2 - w_1) * np.sin(phi) * np.sin(delta) +
-                                np.cos(phi) * np.cos(delta) * (np.sin(w_2) - np.sin(w_1)))
-    else:
-        self.ts_param['R_a'] = 24 * 60 / np.pi * 0.082 * d_r * \
-                               (w_s * np.sin(phi) * np.sin(delta) +
-                                np.cos(phi) * np.cos(delta) * np.sin(w_s))
+        # day of yea
+        if type(ds.indexes[dt_index_name]) is not pd.DatetimeIndex:
+            raise ValueError('DataFrame must have a datetime index!')
 
-    # Daylight hours
-    N = 24 * w_s / np.pi  # TODO: make 3D for R_s calculation? what is this
+        # Create the Day of the year vector
+        Day = ds.indexes[dt_index_name].dayofyear
 
-    # R_s if n_sun is known
-    self.est_val = self.est_val + self.ts_param['R_s'].isnull()*1000
-    self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull(),
-                                    (a_s + b_s * np.squeeze(self.ts_param['n_sun'].values) / N)
-                                    * self.ts_param['R_a'],
-                                    self.ts_param['R_s'])  # np.squeeze: necessary when some dimensions have length of 1
+        # R_a
+        phi = lat * np.pi/180  # TODO: waar wordt lat gedefined? want dit moet komen van de coordinaten...
+        delta = 0.409 * np.sin(2 * np.pi * Day/365-1.39)
+        d_r = 1 + 0.033 * np.cos(2 * np.pi * Day/365)  # TODO: make 360Day calender compatible
+        w_s = np.arccos(-np.tan(phi) * np.tan(delta))
 
-    # R_s if n_sun is not known
-    self.est_val = self.est_val + self.ts_param['R_s'].isnull()*1000
-    self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull(),
-                                    K_rs * ((self.ts_param['T_max'] - self.ts_param['T_min'])**0.5)
-                                    * self.ts_param['R_a'],
-                                    self.ts_param['R_s'])
+        if 'H' in freq:
+            hour_vec = ds.indexes[dt_index_name].hour
+            b = (2 * np.pi * (Day - 81)) / 364
+            S_c = 0.1645 * np.sin(2 * b) - 0.1255 * np.cos(b) - 0.025 * np.sin(b)
+            w = np.pi/12 * (((hour_vec + 0.5) + 0.6666667 * (TZ_lon - lon) + S_c) - 12)
+            w_1 = w - (np.pi * 1)/24  # Need to update one day for different hourly periods
+            w_2 = w + (np.pi * 1)/24  # Need to update one day for different hourly periods
+            self.ts_param['R_a'] = 12 * 60 / np.pi * 0.082 * d_r * \
+                                   ((w_2 - w_1) * np.sin(phi) * np.sin(delta) +
+                                    np.cos(phi) * np.cos(delta) * (np.sin(w_2) - np.sin(w_1)))
+        else:
+            self.ts_param['R_a'] = 24 * 60 / np.pi * 0.082 * d_r * \
+                                   (w_s * np.sin(phi) * np.sin(delta) +
+                                    np.cos(phi) * np.cos(delta) * np.sin(w_s))
 
-    # R_so
-    R_so = (0.75 + 2 * 10**(-5) * z_msl) * self.ts_param['R_a']
+        # Daylight hours
+        N = 24 * w_s / np.pi  # TODO: make 3D for R_s calculation? what is this
 
-    # R_ns from R_s
-    R_ns = (1 - alb) * self.ts_param['R_s']
+        # R_s if n_sun is known
+        self.est_val = self.est_val + self.ts_param['R_s'].isnull()*1000
+        self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull(),
+                                        (a_s + b_s * np.squeeze(self.ts_param['n_sun'].values) / N)
+                                        * self.ts_param['R_a'],
+                                        self.ts_param['R_s'])  # np.squeeze: necessary when some dimensions have length of 1
 
-    # # R_nl
-    if 'H' in freq:
-        R_nl = (2.043 * 10**(-10)) * ((self.ts_param['T_mean'] + 273.16)**4) * \
-               (0.34 - 0.14 * (self.ts_param['e_a'])**0.5) * \
-               ((1.35 * self.ts_param['R_s'] / R_so) - 0.35)
-    else:
-        R_nl = (4.903 * 10**(-9)) * (((self.ts_param['T_max'] + 273.16) ** 4 +
-                                      (self.ts_param['T_min'] + 273.16) ** 4) / 2) * \
-               (0.34 - 0.14 * (self.ts_param['e_a']) ** 0.5) * \
-               ((1.35 * self.ts_param['R_s']/R_so) - 0.35)
+        # R_s if n_sun is not known
+        self.est_val = self.est_val + self.ts_param['R_s'].isnull()*1000
+        self.ts_param['R_s'] = xr.where(self.ts_param['R_s'].isnull(),
+                                        K_rs * ((self.ts_param['T_max'] - self.ts_param['T_min'])**0.5)
+                                        * self.ts_param['R_a'],
+                                        self.ts_param['R_s'])
 
-    # R_n
-    self.est_val = self.est_val + self.ts_param['R_n'].isnull()*100
-    self.ts_param['R_n'] = xr.where(self.ts_param['R_n'].isnull(),
-                                    R_ns - R_nl, self.ts_param['R_n'])
+        # R_so
+        R_so = (0.75 + 2 * 10**(-5) * z_msl) * self.ts_param['R_a']
+
+        # R_ns from R_s
+        self.ts_param['R_ns'] = (1 - alb) * self.ts_param['R_s']
+
+        # # R_nl
+        if 'H' in freq:
+            self.ts_param['R_nl'] = xr.where(self.ts_param['R_nl'].isnull(),
+                                             (2.043 * 10 ** (-10)) * ((self.ts_param['T_mean'] + 273.16) ** 4) * \
+                                             (0.34 - 0.14 * (self.ts_param['e_a']) ** 0.5) * \
+                                             ((1.35 * self.ts_param['R_s'] / R_so) - 0.35),
+                                            self.ts_param['R_nl'])
+
+            # R_nl = (2.043 * 10**(-10)) * ((self.ts_param['T_mean'] + 273.16)**4) * \
+            #       (0.34 - 0.14 * (self.ts_param['e_a'])**0.5) * \
+            #       ((1.35 * self.ts_param['R_s'] / R_so) - 0.35)
+        else:
+            self.ts_param['R_nl'] = xr.where(self.ts_param['R_nl'].isnull(),
+                                             (4.903 * 10 ** (-9)) * (((self.ts_param['T_max'] + 273.16) ** 4 +
+                                                                      (self.ts_param['T_min'] + 273.16) ** 4) / 2) * \
+                                             (0.34 - 0.14 * (self.ts_param['e_a']) ** 0.5) * \
+                                             ((1.35 * self.ts_param['R_s'] / R_so) - 0.35),
+                                             self.ts_param['R_nl'])
+            # R_nl = (4.903 * 10**(-9)) * (((self.ts_param['T_max'] + 273.16) ** 4 +
+            #                               (self.ts_param['T_min'] + 273.16) ** 4) / 2) * \
+            #        (0.34 - 0.14 * (self.ts_param['e_a']) ** 0.5) * \
+            #        ((1.35 * self.ts_param['R_s']/R_so) - 0.35)
+
+    if self.ts_param['R_n'].isnull().values.sum() > 0:
+        # R_n
+        self.est_val = self.est_val + self.ts_param['R_n'].isnull()*100
+        self.ts_param['R_n'] = xr.where(self.ts_param['R_n'].isnull(),
+                                        self.ts_param['R_ns'] - self.ts_param['R_nl'], self.ts_param['R_n'])
 
     # +G
     self.est_val = self.est_val + self.ts_param['G'].isnull()*10
@@ -284,7 +302,6 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
 
     ######
     ## Wind component
-
     self.ts_param['U_2'] = self.ts_param['U_z'] * 4.87 / np.log(67.8 * z_u - 5.42)
 
     # or use 2 if wind speed is not known

@@ -2,7 +2,8 @@
 Testing the ET0 package Sarah sent.
 This computes FAO56 PM well-watered grass PE.
 """
-from eto import ETo, datasets
+from eto import ETo_xr, datasets
+from eto.util_xr import get_ukcp18_kwargs, prepare_input_from_ukcp18
 import pandas as pd
 import numpy as np
 
@@ -14,7 +15,7 @@ import numpy as np
 #   e_a
 # along with date.
 
-et1 = ETo()
+et1 = ETo_xr()
 ex1_path = datasets.get_path('example_daily')
 dftemp = pd.read_csv(ex1_path, parse_dates=True, infer_datetime_format=True, index_col='date')
 ds = dftemp.to_xarray().assign_coords({'projection_x_coordinate': 20000,
@@ -32,3 +33,14 @@ freq = 'D'  # known
 # et1.ts_param.head()
 et1.param_est_xr(ds, freq, z_msl, lat, lon, TZ_lon)
 et1.ts_param
+
+
+# test on ukcp18
+varlist = ['hurs', 'psl', 'rls', 'rss', 'sfcWind', 'tasmax', 'tasmin', 'tas']
+pd = dict([[v,
+       "/Users/nelereyniers/data/toydata/toydata_3x3/{}_rcp85_land-rcm_uk_12km_01_day_19801201-20801130.nc".format(v)]
+      for v in varlist])
+ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+kwargs_ukcp18 = get_ukcp18_kwargs()
+et_ukcp18 = ETo_xr()
+et_ukcp18.param_est_xr(ds_ukcp18, **kwargs_ukcp18)

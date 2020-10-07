@@ -4,7 +4,7 @@ Function to estimate reference ET (ETo) from the FAO 56 paper using a minimum of
 
 xr by nele reyniers: TODO
 """
-import pandas as pd
+import xarray as xr
 import numpy as np
 
 def eto_fao_xr(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15, remove_extreme_values=True, round_decimals=2):
@@ -35,6 +35,8 @@ def eto_fao_xr(self, max_ETo=15, min_ETo=0, interp=False, maxgap=15, remove_extr
 
     .. [1] Allen, R. G., Pereira, L. S., Raes, D., & Smith, M. (1998). Crop evapotranspiration-Guidelines for
     computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
+
+    nnn: Contrary to the pd-based original ETo, this function allows for negative potential evaporation values.
     """
     ######
     ## ETo equation

@@ -10,7 +10,7 @@ from eto.param_est import param_est
 from eto.methods.ETo import eto_fao
 from eto.methods.hargreaves import hargreaves
 from eto.param_est_xr import param_est_xr
-# from eto.methods.ETo_xr import eto_fao_xr  # TODO
+from eto.methods.ETo_xr import eto_fao_xr
 # from eto.methods.hargreaves_xr import hargreaves_xr  # TODO
 
 
@@ -84,7 +84,7 @@ class ETo_xr(object):
 
 
     def __init__(self, ds=None, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None,
-                 z_u=2, K_rs=0.16, a_s=0.25, b_s=0.5, alb=0.23):
+                 z_u=2, K_rs=0.16, a_s=0.25, b_s=0.5, alb=0.23, remove_extreme_values=True, round_decimals=2):
 
         if ds is None:
             pass
@@ -121,6 +121,6 @@ class ETo_xr(object):
 
 ### Add in the ETo methods and other functions
 ETo_xr.param_est_xr = param_est_xr
-# ETo_xr.eto_fao_xr = eto_fao_xr  # TODO
+ETo_xr.eto_fao_xr = eto_fao_xr  # TODO
 # ETo_xr.eto_hargreaves_xr = hargreaves_xr  # TODO
 ETo_xr.copy = copy
