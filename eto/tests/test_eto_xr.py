@@ -66,7 +66,7 @@ et1 = ETo_xr(ds, 'D', z_msl, lat, lon, TZ_lon, remove_extreme_values=False, roun
 #     assert eto3 > res1
 
 
-# test util
+# test ukcp18
 varlist = ['hurs', 'psl', 'rls', 'rss', 'sfcWind', 'tasmax', 'tasmin', 'tas']
 pd = dict([[v,
        "/Users/nelereyniers/data/toydata/toydata_3x3/{}_rcp85_land-rcm_uk_12km_01_day_19801201-20801130.nc".format(v)]

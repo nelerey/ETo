@@ -40,7 +40,6 @@ def prepare_input_from_ukcp18(pathsdict, concat_dim='time'):
     ds_ukcp18['P'] = ds_ukcp18['P']/10  # hPa to kPa
     ds_ukcp18['R_nl'] = ds_ukcp18['R_nl'] * -0.0864  # Wm^-2 to MJm^-2, daily resolution, upwelling
     ds_ukcp18['R_ns'] = ds_ukcp18['R_ns'] * 0.0864  # Wm^-2 to MJm^-2, daily resolution
-
     return ds_ukcp18
 
 
