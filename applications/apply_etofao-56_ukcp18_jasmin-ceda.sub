@@ -1,0 +1,25 @@
+#!/bin/bash
+#SBATCH --partition=short-serial
+#SBATCH -t 02:00:00
+#SBATCH --array 1,4-13,15
+#SBATCH --mail-type=ALL             # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=N.Reyniers@uea.ac.uk
+#SBATCH --job-name=eto-fao
+#SBATCH -o eto-fao_%A-%a.out
+#SBATCH -e eto-fao_%A-%a.err
+
+module load jaspy/3.7/r20200606
+
+SLURM_ARRAY_TASK_ID_sf=`printf %02d $SLURM_ARRAY_TASK_ID`
+
+for start in {1980..2070..10};
+do
+    stop="$((start + 10))"
+    echo evpot-fao56_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_${start}1201-${stop}1130.nc
+
+    python3 /home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py \
+    -v hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas \
+    -i /badc/ukcp18/data/land-rcm/uk/12km/rcp85/${SLURM_ARRAY_TASK_ID_sf}/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_${start}1201-${stop}1130.nc \
+    -o /home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_${start}1201-${stop}1130.nc \
+    -n evpot-fao56
+done

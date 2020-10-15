@@ -2,13 +2,16 @@
 Example script for application on ukcp18 data.
 """
 import xarray as xr
-from eto import ETo_xr
-from eto.util_xr import prepare_input_from_ukcp18, get_ukcp18_kwargs
 import sys
-import glob
+import os
+print("os.getcwd: \n", os.getcwd())
+sys.path.append(os.getcwd())
+print("sys.path: \n", sys.path)
+# import glob
 from datetime import datetime
 from optparse import OptionParser
-
+from eto.util_xr import prepare_input_from_ukcp18, get_ukcp18_kwargs
+from eto import ETo_xr
 
 parser = OptionParser()
 parser.add_option('-v', '--variables', action='store',

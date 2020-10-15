@@ -1,0 +1,320 @@
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_19801201-19901130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 1980-12-01 12:00:00 ... 1990-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 1980 1980 1980 1980 ... 1990 1990 1990
+    yyyymmdd                 (time) |S64 b'19801201                                                        ' ... b'19901130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 99.650345 ... 103.85423
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 5.1078863 ... 7.545967
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.2908554 ... 0.79886127
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f2978848f10>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_19901201-20001130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 1990-12-01 12:00:00 ... 2000-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 1990 1990 1990 1990 ... 2000 2000 2000
+    yyyymmdd                 (time) |S64 b'19901201                                                        ' ... b'20001130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 103.62795 ... 103.3125
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 4.3683043 ... 7.246368
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 2.2948086 ... 0.89921373
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f422ec6bf50>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20001201-20101130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2000-12-01 12:00:00 ... 2010-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2000 2000 2000 2000 ... 2010 2010 2010
+    yyyymmdd                 (time) |S64 b'20001201                                                        ' ... b'20101130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 99.890854 ... 101.97805
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.9222999 ... 1.6691699
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 4.2889347 ... 0.12200223
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f508ae26a90>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20101201-20201130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2010-12-01 12:00:00 ... 2020-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2010 2010 2010 2010 ... 2020 2020 2020
+    yyyymmdd                 (time) |S64 b'20101201                                                        ' ... b'20201130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 103.39146 ... 99.805374
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 4.5785136 ... 3.6110709
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.5674446 ... 0.2513666
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7fa42c105910>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20201201-20301130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2020-12-01 12:00:00 ... 2030-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2020 2020 2020 2020 ... 2030 2030 2030
+    yyyymmdd                 (time) |S64 b'20201201                                                        ' ... b'20301130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 100.32579 ... 100.36655
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.5245478 ... 1.2622248
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.6748319 ... 0.08821362
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f58a53769d0>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20301201-20401130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2030-12-01 12:00:00 ... 2040-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2030 2030 2030 2030 ... 2040 2040 2040
+    yyyymmdd                 (time) |S64 b'20301201                                                        ' ... b'20401130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 102.145935 ... 100.690155
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 6.1557617 ... 3.1865509
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.955994 ... 0.114078246
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f02e387b9d0>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20401201-20501130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2040-12-01 12:00:00 ... 2050-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2040 2040 2040 2040 ... 2050 2050 2050
+    yyyymmdd                 (time) |S64 b'20401201                                                        ' ... b'20501130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 101.42284 ... 97.08806
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 5.4145675 ... 3.8575978
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 2.2425754 ... 0.6081789
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7fb4c562d390>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20501201-20601130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2050-12-01 12:00:00 ... 2060-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2050 2050 2050 2050 ... 2060 2060 2060
+    yyyymmdd                 (time) |S64 b'20501201                                                        ' ... b'20601130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 100.87763 ... 102.845436
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 2.667401 ... 6.4531226
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 1.0151855 ... 0.88983965
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7fa222155f50>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20601201-20701130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2060-12-01 12:00:00 ... 2070-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2060 2060 2060 2060 ... 2070 2070 2070
+    yyyymmdd                 (time) |S64 b'20601201                                                        ' ... b'20701130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 100.905174 ... 98.721085
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 6.2322965 ... 9.236983
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 4.5436106 ... 0.9742469
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f63f62a9950>
+evpot-fao56_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc
+os.getcwd: 
+ /home/users/nelerey/phd_code/ETo/applications
+sys.path: 
+ ['/home/users/nelerey/phd_code/ETo/applications', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python37.zip', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/lib-dynload', '/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages', '/home/users/nelerey/phd_code/ETo/applications', '/home/users/nelerey/phd_code/ETo']
+{'varlist': 'hurs,psl,rls,rss,sfcWind,tasmax,tasmin,tas', 'in_path_format': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'out_path_format': '/home/users/nelerey/data/PE/ETo-fao56/{}_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'outvarname': 'evpot-fao56'}
+paths dict: 
+ {'hurs': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'psl': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/psl/day/latest/psl_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'rls': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rls/day/latest/rls_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'rss': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/rss/day/latest/rss_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'sfcWind': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/sfcWind/day/latest/sfcWind_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'tasmax': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmax/day/latest/tasmax_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'tasmin': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tasmin/day/latest/tasmin_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc', 'tas': '/badc/ukcp18/data/land-rcm/uk/12km/rcp85/06/tas/day/latest/tas_rcp85_land-rcm_uk_12km_06_day_20701201-20801130.nc'}
+<xarray.Dataset>
+Dimensions:                  (ensemble_member: 1, projection_x_coordinate: 82, projection_y_coordinate: 112, time: 3600)
+Coordinates:
+  * ensemble_member          (ensemble_member) int32 6
+  * time                     (time) object 2070-12-01 12:00:00 ... 2080-11-30 12:00:00
+  * projection_y_coordinate  (projection_y_coordinate) float64 -1.02e+05 ... 1.23e+06
+  * projection_x_coordinate  (projection_x_coordinate) float64 -2.1e+05 ... 7.62e+05
+    ensemble_member_id       (ensemble_member) |S27 b'HadREM3-GA705-r001i1p01649 '
+    grid_latitude            (projection_y_coordinate, projection_x_coordinate) float64 1.433 ... 10.63
+    grid_longitude           (projection_y_coordinate, projection_x_coordinate) float64 -18.24 ... -6.58
+    month_number             (time) int32 12 12 12 12 12 12 ... 11 11 11 11 11
+    year                     (time) int32 2070 2070 2070 2070 ... 2080 2080 2080
+    yyyymmdd                 (time) |S64 b'20701201                                                        ' ... b'20801130                                                        '
+Data variables:
+    RH_mean                  (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    transverse_mercator      int32 -2147483647
+    P                        (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 99.414024 ... 99.897736
+    R_nl                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 4.4358034 ... 3.8590782
+    R_ns                     (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 3.6948912 ... 0.5287434
+    U_z                      (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_max                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_min                    (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+    T_mean                   (ensemble_member, time, projection_y_coordinate, projection_x_coordinate) float32 ...
+<eto.core.ETo_xr object at 0x7f525b409b10>

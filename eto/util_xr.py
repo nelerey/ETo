@@ -23,7 +23,7 @@ def prepare_input_from_ukcp18(pathsdict, concat_dim='time'):
     datadict = {}
     for key in pathsdict:
         if concat_dim:
-            datadict[key] = xr.open_mfdataset(pathsdict[key], concat_dim=concat_dim)
+            datadict[key] = xr.open_mfdataset(pathsdict[key], concat_dim=concat_dim, chunks={'projection_x_coordinate': 15, 'projection_y_coordinate': 15})
         else:
             datadict[key] = xr.open_dataset(pathsdict[key])
     # put ds containing different variables into one dataset
