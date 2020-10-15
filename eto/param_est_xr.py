@@ -94,7 +94,7 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
      for computing crop water requirements-FAO Irrigation and drainage paper 56. FAO, Rome, 300(9), D05109.
     """
     met_names = np.array(['R_n', 'R_s', 'G', 'T_min', 'T_max', 'T_mean', 'T_dew',
-                          'RH_min', 'RH_max', 'RH_mean', 'n_sun', 'U_z', 'P', 'e_a', 'R_ns', 'R_nl'])
+                          'RH_min', 'RH_max', 'RH_mean', 'n_sun', 'U_z', 'U_2', 'P', 'e_a', 'R_ns', 'R_nl'])
     self.freq = freq
     varnames = list(ds.keys())
     ####################################
@@ -302,9 +302,14 @@ def param_est_xr(self, ds, freq='D', z_msl=None, lat=None, lon=None, TZ_lon=None
 
     ######
     ## Wind component
-    self.ts_param['U_2'] = self.ts_param['U_z'] * 4.87 / np.log(67.8 * z_u - 5.42)
+    # print('wind height: \n', z_u)
+
+    # print(self.ts_param['U_2'][0,0,0])
+    self.ts_param['U_2'] = self.ts_param['U_z']*4.87/np.log(67.8 * z_u - 5.42)
+
+    # print(self.ts_param['U_2'][0,0,0])
 
     # or use 2 if wind speed is not known
     self.est_val = self.est_val + self.ts_param['U_z'].isnull()*1
     self.ts_param['U_2'] = xr.where(self.ts_param['U_z'].isnull(),
-                                    2, self.ts_param['U_z'])
+                                    2, self.ts_param['U_2'])

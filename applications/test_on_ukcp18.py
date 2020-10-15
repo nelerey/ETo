@@ -25,6 +25,7 @@ pd = dict([[v, input_path_format.format(var=v)] for v in varlist])
 outpath = output_path_format.format(outvarname)
 
 ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+ds_ukcp18 = ds_ukcp18.drop_dims('bnds')
 kwargs_ukcp18 = get_ukcp18_kwargs()
 et_ukcp18 = ETo_xr()
 et_ukcp18.param_est_xr(ds_ukcp18, **kwargs_ukcp18)
