@@ -1,0 +1,265 @@
+cpu-bind=MASK - host607, task  0  0 [43616]: mask 0x800000 set
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_19801201-20101130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_19801201-20101130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_19901201-20201130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_19901201-20201130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20001201-20301130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20001201-20301130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20101201-20401130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20101201-20401130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20201201-20501130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20201201-20501130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20301201-20601130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20301201-20601130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20401201-20701130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20401201-20701130.nc'
+Traceback (most recent call last):
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 198, in _acquire_with_cache_info
+    file = self._cache[self._key]
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/lru_cache.py", line 53, in __getitem__
+    value = self._cache[key]
+KeyError: [<class 'netCDF4._netCDF4.Dataset'>, ('/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20501201-20801130.nc',), 'r', (('clobber', True), ('diskless', False), ('format', 'NETCDF4'), ('persist', False))]
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/users/nelerey/phd_code/ETo/applications/apply_etofao-56_ukcp18_jasmin-ceda.py", line 55, in <module>
+    ds_ukcp18 = prepare_input_from_ukcp18(pd, concat_dim=False)
+  File "/home/users/nelerey/phd_code/ETo/eto/util_xr.py", line 28, in prepare_input_from_ukcp18
+    datadict[key] = xr.open_dataset(pathsdict[key])
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/api.py", line 502, in open_dataset
+    filename_or_obj, group=group, lock=lock, **backend_kwargs
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 358, in open
+    return cls(manager, group=group, mode=mode, lock=lock, autoclose=autoclose)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 314, in __init__
+    self.format = self.ds.data_model
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 367, in ds
+    return self._acquire()
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/netCDF4_.py", line 361, in _acquire
+    with self._manager.acquire_context(needs_lock) as root:
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/contextlib.py", line 112, in __enter__
+    return next(self.gen)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 186, in acquire_context
+    file, cached = self._acquire_with_cache_info(needs_lock)
+  File "/apps/jasmin/jaspy/miniconda_envs/jaspy3.7/m3-4.6.14/envs/jaspy3.7-m3-4.6.14-r20200606/lib/python3.7/site-packages/xarray/backends/file_manager.py", line 204, in _acquire_with_cache_info
+    file = self._opener(*self._args, **kwargs)
+  File "netCDF4/_netCDF4.pyx", line 2321, in netCDF4._netCDF4.Dataset.__init__
+  File "netCDF4/_netCDF4.pyx", line 1885, in netCDF4._netCDF4._ensure_nc_success
+FileNotFoundError: [Errno 2] No such file or directory: b'/badc/ukcp18/data/land-rcm/uk/12km/rcp85/09/hurs/day/latest/hurs_rcp85_land-rcm_uk_12km_09_day_20501201-20801130.nc'
