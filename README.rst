@@ -1,3 +1,7 @@
+
+THIS VERSION IS RUBBISH, AND YOU SHOULD NOT USE IT.
+
+
 ETo - A Python package for calculating reference evapotranspiration
 ===================================================================
 
