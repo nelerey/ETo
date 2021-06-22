@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --partition=test
+#SBATCH -t 01:00:00
+#SBATCH --array 1  # start with first one to test
+#SBATCH --mail-type=ALL             # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=N.Reyniers@uea.ac.uk
+#SBATCH --job-name=eto-ceh-TEST
+#SBATCH -o eto-ceh-TEST_%A-%a.out
+#SBATCH -e eto-ceh-TEST_%A-%a.err
+
+module load jaspy/3.7/r20200606
+
+SLURM_ARRAY_TASK_ID_sf=`printf %02d $SLURM_ARRAY_TASK_ID`
+
+python3 -m cProfile -o profile_eto-ceh-toy.dat /home/users/nelerey/phd_code/ETo/eto/methods/ETo_chess.py \
+-v huss,psl,rls,rss,sfcWind,tas \
+-i /home/users/nelerey/data/toydata_3x3/{var}_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_19801201-20801130.nc \
+-o /home/users/nelerey/data/toydata_3x3/pet_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_19801201-20801130.nc

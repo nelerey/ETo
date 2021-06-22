@@ -1,0 +1,27 @@
+#!/bin/bash
+#SBATCH --partition=short-serial
+#SBATCH -t 24:00:00
+#SBATCH --array 1,4-13,15  # start with first one to test
+#SBATCH --mail-type=ALL             # Mail events (NONE, BEGIN, END, FAIL, ALL)
+#SBATCH --mail-user=N.Reyniers@uea.ac.uk
+#SBATCH --job-name=eto-ceh
+#SBATCH -o eto-ceh_%A-%a.out
+#SBATCH -e eto-ceh_%A-%a.err
+
+module load jaspy/3.7/r20200606
+
+# source /home/users/nelerey/util/job-state-monitor-sci.sh $SLURM_JOB_ID
+
+SLURM_ARRAY_TASK_ID_sf=`printf %02d $SLURM_ARRAY_TASK_ID`
+
+for start in {1980..2070..10};
+do
+    stop="$((start + 10))"
+    OUTNAME="pet_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_${start}1201-${stop}1130.nc"
+    echo $OUTNAME
+
+    python3 /home/users/nelerey/phd_code/ETo/eto/methods/ETo_chess.py \
+    -v huss,psl,rls,rss,sfcWind,tas \
+    -i /badc/ukcp18/data/land-rcm/uk/12km/rcp85/${SLURM_ARRAY_TASK_ID_sf}/{var}/day/latest/{var}_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_${start}1201-${stop}1130.nc \
+    -o /home/users/nelerey/data/PE/ETo-chess/pet_rcp85_land-rcm_uk_12km_${SLURM_ARRAY_TASK_ID_sf}_day_${start}1201-${stop}1130.nc
+done
